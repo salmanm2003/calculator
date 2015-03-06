@@ -4,7 +4,7 @@
 class Calculator
 {
 
-	public function calculateValue($cal_input = '')
+	public function calculate($cal_input = '12+3')
 	{
 
 		echo "<form name='cal' method='post' action='' >
@@ -17,20 +17,22 @@ class Calculator
 		if($cal_input != '')
 		{
 
-			$input = preg_match('/^[0-9]*/', $cal_input, $matches);
-			
-
+			preg_match('/^[0-9]*/', $cal_input, $matches);
+			echo $rest  = preg_replace('/^[0-9]*/','',$cal_input);
+			print_r($matches);
 		}
 		else
 		{
 
-			echo 'Please Enter the operation above'
+			echo 'Please Enter the operation above';
 
 		}
+		echo 'hello world';
 
 
 	}
 
 }
 
-?>
+$cal = new Calculator();
+$cal->calculate();
