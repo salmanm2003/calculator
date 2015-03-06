@@ -13,14 +13,14 @@ class Calculator
 		{
 
 			//If its just one number (integer/float) 
-			if(!is_numeric($cal_input))
+			if(!is_float($cal_input))
 			{	
 				
 				//Get the first number from input.
-				preg_match('/^[0-9\.]*/', $cal_input, $matches);
+				preg_match('/^(\-?[0-9]*\.?[0-9]*)/', $cal_input, $matches);
 				$first_num = $matches[0];
 				//Remove first number from input.
-				$cal_rest  = preg_replace('/^[0-9\.]*/','',$cal_input);
+				$cal_rest  = preg_replace('/^(\-?[0-9]*\.?[0-9]*)/','',$cal_input);
 				
 				//Operator priorities.
 				$op_arr  = ['*','/'];
@@ -38,11 +38,11 @@ class Calculator
 						$cal_rest = substr($cal_rest,1);
 						
 						//Get the second number from input
-						preg_match('/^[0-9\.]*/', $cal_rest, $matches_rest);
+						preg_match('/^(\-?[0-9]*\.?[0-9]*)/', $cal_rest, $matches_rest);
 						$sec_num = $matches_rest[0];
 
 						//Remove the second number from input
-						$cal_rest = preg_replace('/^[0-9\.]*/','',$cal_rest);
+						$cal_rest = preg_replace('/^(\-?[0-9]*\.?[0-9]*)/','',$cal_rest);
 
 						//Get the result of first number multiple second one
 						$cal_sub  = floatval($first_num) * floatval($sec_num);
@@ -54,10 +54,10 @@ class Calculator
 						//Do the same as multiplication
 						$cal_rest = substr($cal_rest,1);
 						
-						preg_match('/^[0-9\.]*/', $cal_rest, $matches_rest);
+						preg_match('/^(\-?[0-9]*\.?[0-9]*)/', $cal_rest, $matches_rest);
 						
 						$sec_num = $matches_rest[0];
-						$cal_rest = preg_replace('/^[0-9\.]*/','',$cal_rest);
+						$cal_rest = preg_replace('/^(\-?[0-9]*\.?[0-9]*)/','',$cal_rest);
 						$cal_sub  = floatval($first_num) / floatval($sec_num);
 						
 					}
