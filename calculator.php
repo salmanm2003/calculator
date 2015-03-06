@@ -4,12 +4,9 @@
 class Calculator
 {
 
-	public function calculate($cal_input = '3*4+5')
+	public function calculate($cal_input = '')
 	{
-
-
-		$cal_input = (isset($_POST['cal_input']))?$_POST['cal_input']:$cal_input;
-
+		
 		if($cal_input != '')
 		{
 
@@ -50,9 +47,9 @@ class Calculator
 						
 					}
 					   
-					echo $cal_rest = $cal_sub.$cal_rest;
-					echo '<br/>';
-					$this->calculate($cal_rest);
+					$cal_rest  = $cal_sub.$cal_rest;
+				
+					$cal_input = $this->calculate($cal_rest);
 				
 				}
 				elseif(in_array($cal_rest[0],$op_arr1))
@@ -63,7 +60,7 @@ class Calculator
 						
 						$cal_rest = substr($cal_rest,1);
 						
-						$cal_sub  = floatval($first_num) + floatval($this->calculate($cal_rest));
+						$cal_input  = floatval($first_num) + floatval($this->calculate($cal_rest));
 						
 					}
 					elseif($cal_rest[0] == '-')
@@ -71,20 +68,17 @@ class Calculator
 						
 						$cal_rest = substr($cal_rest,1);
 						
-						$cal_sub  = floatval($first_num) - floatval($this->calculate($cal_rest));
+						$cal_input  = floatval($first_num) - floatval($this->calculate($cal_rest));
 						
 					}
 				
 				}
 				
 			}
-			else
-			{
+			
+			
+			return $cal_input;
 				
-				echo $cal_input;
-				return $cal_input;
-				
-			}
 			
 		}
 		else
@@ -98,10 +92,12 @@ class Calculator
 
 }
 
+$cal_input = (isset($_POST['cal_input']))?(string)$_POST['cal_input']:'';
+
 echo "<form name='cal' method='post' action='' >
 		<input type='text' name='cal_input' />
 		<input type='submit' value='Calculate' />
 	  </form> ";
 
 $cal = new Calculator();
-echo $cal->calculate();
+echo $cal->calculate($cal_input);
