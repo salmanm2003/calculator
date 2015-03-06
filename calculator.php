@@ -18,8 +18,29 @@ class Calculator
 		{
 
 			preg_match('/^[0-9]*/', $cal_input, $matches);
-			echo $rest  = preg_replace('/^[0-9]*/','',$cal_input);
+			$cal_rest  = preg_replace('/^[0-9]*/','',$cal_input);
 			print_r($matches);
+			
+			$op_arr = ['*','/'];
+			
+			if(in_array($cal_rest[0],$op_arr)
+			{
+			
+				if(cal_rest[0] == '*')
+				{
+					
+					$cal_rest = substr(cal_rest,1);
+					
+					preg_match('/^[0-9]*/', $cal_rest, $matches_rest);
+					
+					$cal_rest = preg_replace('/^[0-9]*/','',$cal_rest);
+					$cal_rest = (intval)$matches * (intval)$matches_rest;
+					
+				}
+				   
+			}
+			   
+			
 		}
 		else
 		{
@@ -36,3 +57,6 @@ class Calculator
 
 $cal = new Calculator();
 $cal->calculate();
+
+
+?>
